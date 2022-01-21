@@ -102,7 +102,7 @@ Resources:
             - Type: HEAD_REF
               Pattern: !Sub "^refs/heads/${GitHubBranch}$"
             - Type: COMMIT_MESSAGE
-              Pattern: " *[build].*"
+              Pattern: "[build]"
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
