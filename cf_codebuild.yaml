@@ -60,6 +60,7 @@ Resources:
                 Effect: Allow
                 Action:
                   - "s3:PutObject"
+                  - "s3:PutObjectAcl"
                 Resource:
                   - "*"
               - Sid: S3BucketIdentity
