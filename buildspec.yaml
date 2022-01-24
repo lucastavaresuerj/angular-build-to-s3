@@ -19,4 +19,4 @@ phases:
   post_build:
     commands:
       - echo syncing files with s3://${S3_BUCKET_NAME}...
-      - aws s3 sync ./${PROJECT_ANGULAR_NAME}/dist/${PROJECT_ANGULAR_NAME} s3://${S3_BUCKET_NAME} --acl 'public-read' --delete
+      - aws s3 sync ./${PROJECT_ANGULAR_NAME}/dist/${PROJECT_ANGULAR_NAME} s3://${S3_BUCKET_NAME} --delete
