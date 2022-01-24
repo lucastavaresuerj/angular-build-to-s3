@@ -36,6 +36,14 @@ Resources:
             Resource: !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
             Principal:
               CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
+          - Action: "*"
+            Effect: Allow
+            Resource: !Sub "arn:aws:s3:::${S3BucketWebSite}"
+            Principal: "*"
+          - Action: "*"
+            Effect: Allow
+            Resource: !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
+            Principal: "*"
 
   CloudFrontOriginAccessIdentity:
     Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
@@ -109,21 +117,27 @@ Resources:
                   - "s3:GetObject"
                   - "s3:GetObjectVersion"
                 Resource:
-                  - "*"
+                  - !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
               - Sid: S3PutObjectPolicy
                 Effect: Allow
                 Action:
                   - "s3:PutObject"
                   - "s3:PutObjectAcl"
                 Resource:
-                  - "*"
+                  - !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
+              - Sid: S3DeleteObjectPolicy
+                Effect: Allow
+                Action:
+                  - "s3:DeleteObject"
+                Resource:
+                  - !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
               - Sid: S3BucketIdentity
                 Effect: Allow
                 Action:
                   - "s3:GetBucketAcl"
                   - "s3:GetBucketLocation"
                 Resource:
-                  - "*"
+                  - !Sub "arn:aws:s3:::${S3BucketWebSite}/*"
 
   CodeBuildSourceCredential:
     Type: "AWS::CodeBuild::SourceCredential"
